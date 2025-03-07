@@ -7,6 +7,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+    res.setHeader("Content-Security-Policy", "default-src 'self'; font-src 'self' https://backend-todo-application.vercel.app;");
+    next();
+});
+
+
 const db = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
@@ -34,11 +40,6 @@ const fetchTasks = (res) => {
         }
     });
 };
-
-app.get('/', (req, res) => {
-    res.send('API is running...');
-});
-
 
 app.post('/new-task', (req, res) => {
     const { task } = req.body;
@@ -91,6 +92,7 @@ app.post('/delete-task', (req, res) => {
         }
     });
 });
+
 
 app.post('/complete-task', (req, res) => {
     const { id } = req.body;
