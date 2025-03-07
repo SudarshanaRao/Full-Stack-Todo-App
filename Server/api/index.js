@@ -8,9 +8,13 @@ app.use(express.json());
 app.use(cors());
 
 app.use((req, res, next) => {
-    res.setHeader("Content-Security-Policy", "default-src 'self'; font-src 'self' https://backend-todo-application.vercel.app;");
+    res.setHeader(
+        "Content-Security-Policy",
+        "default-src 'self'; font-src 'self' https://backend-todo-application.vercel.app; style-src 'self' 'unsafe-inline';"
+    );
     next();
 });
+
 
 
 const db = mysql.createConnection({
