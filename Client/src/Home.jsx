@@ -19,7 +19,7 @@ const Home = () => {
         if (!task.trim()) {
             return alert("Task cannot be empty.");
         }
-        axios.post('http://localhost:5000/new-task', { task })
+        axios.post('https://backend-todo-application.vercel.app/new-task', { task })
             .then(res => {
                 setTodos(res.data);
                 setTask('');
