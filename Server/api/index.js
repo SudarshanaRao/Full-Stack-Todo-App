@@ -35,6 +35,11 @@ const fetchTasks = (res) => {
     });
 };
 
+app.get('/', (req, res) => {
+    res.send('API is running...');
+});
+
+
 app.post('/new-task', (req, res) => {
     const { task } = req.body;
     if (!task) {
