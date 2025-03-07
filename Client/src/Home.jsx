@@ -28,7 +28,7 @@ const Home = () => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:5000/read-tasks')
+        axios.get('https://backend-todo-application.vercel.app/read-tasks')
             .then(res => {
                 setTodos(res.data);
                 setLoading(false);
